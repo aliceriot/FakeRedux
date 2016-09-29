@@ -16,6 +16,10 @@ const compose = (...fs) => (...a) => (
 // array methods
 const cons = curry((x, xs) => [x].concat(xs))
 
+const flatten = xs => (
+  len(xs) === 1 ? head(xs) : head(xs).concat(flatten(tail(xs)))
+)
+
 const map = curry((fn, xs) => xs.map(fn))
 
 const arrcpy = xs => xs.concat()
@@ -64,6 +68,7 @@ module.exports = {
   curry,
   compose,
   cons,
+  flatten,
   map,
   arrcpy,
   filter,
