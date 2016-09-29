@@ -14,6 +14,8 @@ const compose = (...fs) => (...a) => (
 )
 
 // array methods
+const cons = curry((x, xs) => [x].concat(xs))
+
 const map = curry((fn, xs) => xs.map(fn))
 
 const arrcpy = xs => xs.concat()
@@ -30,7 +32,7 @@ const reverse = compose(_rev, arrcpy)
 
 const len = xs => xs.length
 
-const isSingleton = xs => len(xs) === 1
+const editHead = curry((fn, xs) => cons(fn(head(xs)), tail(xs)))
 
 // strings
 const strcpy = s => s.concat()
@@ -45,13 +47,18 @@ const capitalize = compose(_firstCap, toLower, strcpy)
 
 const split = curry((sep, s) => s.split(sep))
 
-// const join = curry((
+const join = curry((char, s) => s.join(char))
 
 const words = split(' ')
+
+const sentence = join(' ')
+
+const capitalizeSentence = compose(sentence, editHead(capitalize), words)
 
 module.exports = {
   curry,
   compose,
+  cons,
   map,
   arrcpy,
   filter,
@@ -60,12 +67,15 @@ module.exports = {
   _rev,
   reverse,
   len,
-  isSingleton,
+  editHead,
   strcpy,
   toLower,
   toUpper,
   _firstCap,
   capitalize,
   split,
-  words
+  join,
+  words,
+  sentence,
+  capitalizeSentence,
 }
