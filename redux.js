@@ -5,10 +5,20 @@
 const Redux = reducer => {
   let store = reducer()
 
+  const dispatcher = action => {
+    store = reducer(store, action)
+  }
+
+  const dispatch = action => {
+    if (typeof action === 'function') {
+      action(dispatcher)
+    } else {
+      dispatcher(action)
+    }
+  }
+
   return {
-    dispatch: action => {
-      store = reducer(store, action)
-    },
+    dispatch: dispatch,
     getState: () => store
   }
 }
