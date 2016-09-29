@@ -34,7 +34,7 @@ const len = xs => xs.length
 
 const editHead = curry((fn, xs) => cons(fn(head(xs)), tail(xs)))
 
-// strings
+// string methods
 const strcpy = s => s.concat()
 
 const toLower = s => s.toLowerCase()
@@ -54,6 +54,11 @@ const words = split(' ')
 const sentence = join(' ')
 
 const capitalizeSentence = compose(sentence, editHead(capitalize), words)
+
+// object methods
+const fromPairs = xs => (
+  Object.assign({}, ...map(([k,v]) => ({[k]: v}), xs))
+)
 
 module.exports = {
   curry,
@@ -78,4 +83,5 @@ module.exports = {
   words,
   sentence,
   capitalizeSentence,
+  fromPairs,
 }
