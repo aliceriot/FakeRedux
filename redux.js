@@ -6,14 +6,14 @@ const Redux = reducer => {
   let store = reducer()
 
   return {
-    dispatch: action => store = reducer(store, action),
-    getState: () => store,
+    dispatch: action => {
+      store = reducer(store, action)
+    },
+    getState: () => store
   }
 }
 
-const selfOrEmpty = obj => (
-  obj === undefined ? {} : obj
-)
+const selfOrEmpty = obj => obj === undefined ? {} : obj
 
 const exampleReducer = (state, action) => {
   state = selfOrEmpty(state)
