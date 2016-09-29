@@ -57,7 +57,7 @@ const capitalizeSentence = compose(sentence, editHead(capitalize), words)
 
 // object methods
 const fromPairs = xs => (
-  Object.assign({}, ...map(([k,v]) => ({[k]: v}), xs))
+  Object.assign({}, ...map(([k, v]) => ({[k]: v}), xs))
 )
 
 module.exports = {
@@ -83,5 +83,5 @@ module.exports = {
   words,
   sentence,
   capitalizeSentence,
-  fromPairs,
+  fromPairs
 }
