@@ -1,3 +1,4 @@
+// function methods
 const curry = (fn, ...init) => {
   const nargs = fn.length
 
@@ -12,7 +13,10 @@ const compose = (...fs) => (...a) => (
   len(fs) === 1 ? head(fs)(...a) : head(fs)(compose(...tail(fs))(...a))
 )
 
+// array methods
 const map = curry((fn, xs) => xs.map(fn))
+
+const arrcpy = xs => xs.concat()
 
 const filter = curry((fn, xs) => xs.filter(fn))
 
@@ -20,34 +24,48 @@ const head = xs => xs[0]
 
 const tail = xs => xs.slice(1)
 
-const reverse = xs => xs.reverse()
+const _rev = xs => xs.reverse()
+
+const reverse = compose(_rev, arrcpy)
 
 const len = xs => xs.length
 
 const isSingleton = xs => len(xs) === 1
 
 // strings
-const strCpy = s => s.concat()
+const strcpy = s => s.concat()
 
 const toLower = s => s.toLowerCase()
 
 const toUpper = s => s.toUpperCase()
 
-const firstCap = s => s.replace(/^./, toUpper(head(s)))
+const _firstCap = s => s.replace(/^./, toUpper(head(s)))
 
-const capitalize = compose(firstCap, toLower, strCpy)
+const capitalize = compose(_firstCap, toLower, strcpy)
+
+const split = curry((sep, s) => s.split(sep))
+
+// const join = curry((
+
+const words = split(' ')
 
 module.exports = {
   curry,
+  compose,
   map,
+  arrcpy,
   filter,
   head,
   tail,
+  _rev,
   reverse,
   len,
-  compose,
-  capitalize,
+  isSingleton,
+  strcpy,
   toLower,
   toUpper,
-  firstCap,
+  _firstCap,
+  capitalize,
+  split,
+  words
 }
