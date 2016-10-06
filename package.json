@@ -1,7 +1,7 @@
 {
   "name": "alfpl",
   "version": "1.0.0",
-  "description": "Alice's Little Functional Programming Library",
+  "description": "Fake Redux",
   "main": "fp.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
